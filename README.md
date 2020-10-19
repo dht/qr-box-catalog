@@ -1,68 +1,68 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# QR Box Catalog
 
-## Available Scripts
+Organize your stuff with a QR box catalog. Print QR labels with your `Brother label printer` while keeping your box catalog inside a `Google spreadsheet`.
 
-In the project directory, you can run:
+## Inspirational Quote
 
-### `yarn start`
+> "you can be organized if you really want to" Doc Braun
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Preparations
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+1. Navigate to the [following](https://docs.google.com/spreadsheets/d/1gsCyXlBS_brw7D663zLBJ4xPXU46R3Ks7xtujzJ1crI/) spreadsheet and `make a copy` of it in your own drive.
+2. Click the `Share` button and make sure it is visible by link to anybody for viewing*. 
+3. Copy the `spreadsheet id` from the URL and paste in in the `src/constants/config.json` file:
+```json 
+{
+    "spreadsheetId": "1YZpgeHu4F7wI7WqQOLFHHnNa1x3H2jxTc0nuN8pR0q8"
+}
+```
 
-### `yarn test`
+Enter a valid [Google Sheet API](https://console.cloud.google.com/apis/credentials) key in `spreadsheet.js`:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+const apiKey = 'YOUR_VALID_KEY';
+```
 
-### `yarn build`
+> \* This will open it to the world. You can always turn off the sharing once you're done printing.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Install dependencies
+```bash
+npm install
+```
+or 
+```bash
+yarn
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Run
+```bash
+npm start
+```
 
-### `yarn eject`
+Navigate to http://localhost:3000.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Working with the spreadsheet
+This spreadsheet is your catalogs DB. 
+Each line represents a box/label. The only column you need to change are:
+- Category
+- Title
+- Subtitle
+  
+The rest are auto-generated.
+You print 4 labels each time and change the labels shown by changing the `starting line` to the correct value. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+> The starting line is saved in the `localStorage`.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Adding categories
+On the right side of the spreadsheet you'd see a legend where you can add categories. Those are just for reference. They do not effect the spreadsheet. When adding a new line/box note you only type in the initial letter, the count and box id are auto-generated.
 
-## Learn More
+## Printing
+Press `⌘+p` to print and choose your `Brother Label Printer`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Make sure to choose the following configuration:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Print configuration](public/images/print-configurations.png)
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+That's it, happy cataloging!
